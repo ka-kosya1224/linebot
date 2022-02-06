@@ -3,7 +3,7 @@ from crypt import methods
 from os import abort
 from flask import Flask, request
 from linebot import LineBotApi,WebhookHandler
-from linebot.exception import InvalidSignatureError
+from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent,TextMessage,TextSendMessage
 
 
@@ -14,7 +14,7 @@ linebot_api = LineBotApi("L5NygiSYtBXYDI13ALixITajWjukHApCj7Y9o7KO1faJeulgCBnovq
 handler = WebhookHandler("3efc330ae09bcaa4f45c99cdda23e258")
 
 #URLを指定すればWebhookからイベントが送られてくるようになった
-@app.route('/callback',methods=['POST'])
+@app.route("/callback",methods=['POST'])
 def callback():
     #リクエストがline platfromから送られてきたか確認するためにサインを認証する必要がある
     signature = request.headers['X-Line-Signature']
